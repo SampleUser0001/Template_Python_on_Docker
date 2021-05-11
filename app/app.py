@@ -1,2 +1,4 @@
 # -*- coding: utf-8 -*-
-print('Hello Python on Docker!!')
+
+if __name__ == '__main__':
+  print('Hello Python on Docker!!')
