@@ -1,13 +1,12 @@
 # 任意のイメージを取得
 FROM python:3.10-rc-slim-buster
 
-WORKDIR /app
+WORKDIR /opt/app
 
-COPY app /app
-COPY start.sh /start.sh
+COPY app /opt/app
 
-RUN chmod 755 /start.sh
+RUN chmod 755 /opt/app/start.sh
 
 RUN python --version
 
-CMD [ "/start.sh" ]
+CMD [ "/opt/app/start.sh" ]

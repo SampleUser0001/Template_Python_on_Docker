@@ -4,5 +4,4 @@ services:
     build: .
     container_name: python
     volumes:
-      - ./start.sh:/start.sh
-      - ./app:/app
+      - ./app:/opt/app
