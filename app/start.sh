@@ -1,3 +1,4 @@
 #!/bin/bash
 
-python src/app.py
+cd src
+python app.py
