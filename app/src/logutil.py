@@ -4,8 +4,6 @@ import os
 
 class LogUtil:
   
-  PYTHON_APP_HOME = os.getenv('PYTHON_APP_HOME')
-
   @classmethod
   def get_log_conf(cls, log_conf_path):
     """ ログ設定ファイルを読み込む

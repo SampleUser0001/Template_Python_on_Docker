@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from logging import getLogger, config, StreamHandler, DEBUG
 import os
-import importenv as setting
-from importenv import ImportEnvKeyEnum
 
 import sys
 sys.path.append('./')
 from logutil import LogUtil
+from importenv import ImportEnvKeyEnum
+import importenv as setting
 
 PYTHON_APP_HOME = os.getenv('PYTHON_APP_HOME')
 logger = getLogger(__name__)
