@@ -11,6 +11,15 @@
     docker-compose up
     ```
 
+### 起動引数を渡したい場合
+
+1. docker-compose.ymlのpython serviceの名前を変更する。
+2. 下記実行。
+    ``` sh
+    docker-compose build
+    docker-compose run ${サービス名} ${起動引数}
+    ```
+
 ## 参考
 
 - [Qiita:Docker を使う（python のイメージで色々確認してみる）](https://qiita.com/landwarrior/items/fd918da9ebae20486b81)
