@@ -3,7 +3,6 @@ from logging import getLogger, config, StreamHandler, DEBUG
 import os
 
 import sys
-sys.path.append('./')
 from logutil import LogUtil
 from importenv import ImportEnvKeyEnum
 import importenv as setting
