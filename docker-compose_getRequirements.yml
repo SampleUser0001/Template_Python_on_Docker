@@ -5,4 +5,5 @@ services:
     container_name: python
     volumes:
       - ./app:/opt/app
-    entrypoint: /opt/app/start.sh
+    entrypoint: /bin/bash -c "pip freeze > /opt/app/requirements/requirements.txt"
+    

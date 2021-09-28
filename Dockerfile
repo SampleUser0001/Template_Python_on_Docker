@@ -14,4 +14,4 @@ RUN chmod 755 /opt/app/start.sh
 
 RUN python --version
 
-ENTRYPOINT [ "/opt/app/start.sh" ]
+# ENTRYPOINT [ "/opt/app/start.sh" ]

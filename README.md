@@ -20,6 +20,17 @@
     docker-compose run ${サービス名} ${起動引数}
     ```
 
+### 依存モジュールの取得
+
+コンテナ内で```pip freeze```を実行する。  
+ファイルは```app/requirements/requirements.txt```に出力される。
+
+``` sh
+docker-compose build
+docker-compose -f docker-compose_getRequirements.yml up
+```
+
+
 ## 参考
 
 - [Qiita:Docker を使う（python のイメージで色々確認してみる）](https://qiita.com/landwarrior/items/fd918da9ebae20486b81)
