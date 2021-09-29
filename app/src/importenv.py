@@ -16,5 +16,5 @@ ENV_DIC = {}
 # ImportEnvKeyEnumの値を書く
 ENV_KEYS = []
 
-for key in ENV_KEYS:
-  ENV_DIC[key] = os.environ.get(key)
+for e in ImportEnvKeyEnum:
+  ENV_DIC[e.value] = os.environ.get(e.value)
