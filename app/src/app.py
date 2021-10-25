@@ -8,8 +8,10 @@ from importenv import ImportEnvKeyEnum
 import importenv as setting
 
 PYTHON_APP_HOME = os.getenv('PYTHON_APP_HOME')
+LOG_CONFIG_FILE = ['config', 'log_config.json']
+
 logger = getLogger(__name__)
-log_conf = LogUtil.get_log_conf(PYTHON_APP_HOME + '/config/log_config.json')
+log_conf = LogUtil.get_log_conf(os.path.join(PYTHON_APP_HOME, *LOG_CONFIG_FILE))
 config.dictConfig(log_conf)
 handler = StreamHandler()
 handler.setLevel(DEBUG)
