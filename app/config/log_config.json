@@ -28,12 +28,7 @@
       "handlers": ["consoleHandler", "fileHandler"],
       "propagate": false
     },
-    "same_hierarchy": {
-      "level": "DEBUG",
-      "handlers": ["consoleHandler", "fileHandler"],
-      "propagate": false
-    },
-    "lower.sub": {
+    "util": {
       "level": "DEBUG",
       "handlers": ["consoleHandler", "fileHandler"],
       "propagate": false

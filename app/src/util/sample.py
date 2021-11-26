@@ -2,12 +2,7 @@
 from logging import getLogger, config, StreamHandler, DEBUG
 import os
 
-# import sys
 from logutil import LogUtil
-# from importenv import ImportEnvKeyEnum
-# import importenv as setting
-
-from util.sample import Util
 
 PYTHON_APP_HOME = os.getenv('PYTHON_APP_HOME')
 LOG_CONFIG_FILE = ['config', 'log_config.json']
@@ -21,16 +16,7 @@ logger.setLevel(DEBUG)
 logger.addHandler(handler)
 logger.propagate = False
 
-if __name__ == '__main__':
-    # .envの取得
-    # setting.ENV_DIC[ImportEnvKeyEnum.importenvに書いた値.value]
-    
-    # 起動引数の取得
-    # args = sys.argv
-    # args[0]はpythonのファイル名。
-    # 実際の引数はargs[1]から。
-    
-    print('Hello Python on Docker!!')
-    logger.info('This is logger message!!')
-
-    Util.print()
+class Util:
+    @staticmethod
+    def print():
+        logger.info('Hello Util.')
