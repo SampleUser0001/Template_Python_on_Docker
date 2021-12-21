@@ -55,6 +55,12 @@ docker-compose -f docker-compose_getRequirements.yml up
         "filename": "/home/cloudshell-user/Template_Python_on_Docker/app/log/app.log"  
     ```
 
+### unittest実行
+
+``` sh
+docker-compose -f docker-compose.unittest.yml up
+```
+
 ## 参考
 
 - [Qiita:Docker を使う（python のイメージで色々確認してみる）](https://qiita.com/landwarrior/items/fd918da9ebae20486b81)

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PYTHON_APP_HOME=`pwd`
+source common.sh
 
 cd src
 python app.py

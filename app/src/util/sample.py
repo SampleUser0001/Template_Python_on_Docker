@@ -20,3 +20,4 @@ class Util:
     @staticmethod
     def print():
         logger.info('Hello Util.')
+        return 'This is Util'
