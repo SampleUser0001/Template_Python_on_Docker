@@ -18,7 +18,7 @@
       "class": "logging.FileHandler",
       "level": "DEBUG",
       "formatter": "simple",
-      "filename": "/opt/app/log/app.log"
+      "filename": "log/app.log"
     }
   },
 
