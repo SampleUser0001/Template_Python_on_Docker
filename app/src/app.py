@@ -4,8 +4,7 @@ import os
 
 # import sys
 from logutil import LogUtil
-# from importenv import ImportEnvKeyEnum
-# import importenv as setting
+from importenv import ImportEnvKeyEnum
 
 from util.sample import Util
 
@@ -22,9 +21,6 @@ logger.addHandler(handler)
 logger.propagate = False
 
 if __name__ == '__main__':
-    # .envの取得
-    # setting.ENV_DIC[ImportEnvKeyEnum.importenvに書いた値.value]
-    
     # 起動引数の取得
     # args = sys.argv
     # args[0]はpythonのファイル名。
@@ -32,5 +28,8 @@ if __name__ == '__main__':
     
     print('Hello Python on Docker!!')
     logger.info('This is logger message!!')
+
+    # .envの取得
+    print(ImportEnvKeyEnum.SAMPLE.value)
 
     Util.print()
