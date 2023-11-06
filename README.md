@@ -40,15 +40,15 @@ docker-compose -f docker-compose_getRequirements.yml up
 3. 仮想環境を構築する。
     ``` sh
     python -m venv ${環境名}
-    source venv/bin/activate
+    source ${環境名}/bin/activate
     ``` 
 4. ```pip install -r app/requirements/requirements.txt```
-5. ```start.sh```を必要に応じて修正する。
-    - ```python```コマンドを```python3```コマンドに修正
-6. 実行。
+5. `start.sh`を必要に応じて修正する。
+    - `python`コマンドを`python3`コマンドに修正
+6. `start_venv.sh`を必要に応じて修正する。
+7. 実行。
     ``` sh
-    cd app
-    bash start.sh ${必要に応じて引数を渡す}
+    bash start_venv.sh ${環境名} ${必要に応じて引数を渡す}
     ```
 
 ### unittest実行
