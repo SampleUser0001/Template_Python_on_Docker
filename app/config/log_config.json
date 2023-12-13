@@ -15,7 +15,10 @@
       "stream": "ext://sys.stdout"
     },
     "fileHandler": {
-      "class": "logging.FileHandler",
+      "class": "logging.handlers.TimedRotatingFileHandler",
+      "when": "H",
+      "backupCount": 5,
+      "interval" : 1,
       "level": "DEBUG",
       "formatter": "simple",
       "filename": "log/app.log"
@@ -29,6 +32,11 @@
       "propagate": false
     },
     "util": {
+      "level": "DEBUG",
+      "handlers": ["consoleHandler", "fileHandler"],
+      "propagate": false
+    },
+    "controller": {
       "level": "DEBUG",
       "handlers": ["consoleHandler", "fileHandler"],
       "propagate": false

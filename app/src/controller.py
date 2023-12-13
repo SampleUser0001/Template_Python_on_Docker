@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-from logging import getLogger, config, StreamHandler, DEBUG
+from logging import getLogger, config, DEBUG
 import os
 
+# import sys
 from logutil import LogUtil
 
 PYTHON_APP_HOME = os.getenv('PYTHON_APP_HOME')
@@ -13,9 +14,10 @@ config.dictConfig(log_conf)
 logger.setLevel(DEBUG)
 logger.propagate = False
 
-class Util:
-    @staticmethod
-    def print():
-        logger.info('Hello Util.')
-        logger.debug('Hello Util.')
-        return 'This is Util'
+class SampleController():
+    def __init__(self) -> None:
+        pass
+    
+    def print_log(self) -> None:
+        logger.info("print log")
+        logger.debug("print log")
