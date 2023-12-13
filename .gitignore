@@ -129,5 +129,5 @@ dmypy.json
 .pyre/
 
 # log
-log/*
+app/log/*
 !log/.gitkeep
