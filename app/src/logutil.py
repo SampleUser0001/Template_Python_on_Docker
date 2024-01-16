@@ -28,6 +28,5 @@ class LogUtil:
         for root, dirs, files in os.walk(app_dir):
             for file in files:
                 if file.startswith('test_') and file.endswith('.py'):
-                    print(file)
                     test_files.append(file.replace('.py', ''))
         return test_files
