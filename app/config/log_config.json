@@ -22,6 +22,15 @@
       "level": "DEBUG",
       "formatter": "simple",
       "filename": "log/app.log"
+    },
+    "testFileHandler": {
+      "class": "logging.handlers.TimedRotatingFileHandler",
+      "when": "H",
+      "backupCount": 5,
+      "interval" : 1,
+      "level": "DEBUG",
+      "formatter": "simple",
+      "filename": "log/test.log"
     }
   },
 
@@ -39,6 +48,11 @@
     "controller": {
       "level": "DEBUG",
       "handlers": ["consoleHandler", "fileHandler"],
+      "propagate": false
+    },
+    "test": {
+      "level": "DEBUG",
+      "handlers": ["consoleHandler", "testFileHandler"],
       "propagate": false
     }
   },

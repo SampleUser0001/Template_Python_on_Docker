@@ -17,7 +17,7 @@
 2. 下記実行。
     ``` sh
     docker-compose build
-    docker-compose run ${サービス名} ${起動引数}
+    docker-compose run ${サービス名} ${環境名} ${起動引数}
     ```
 
 ### 依存モジュールの取得
