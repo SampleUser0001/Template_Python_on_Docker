@@ -21,7 +21,8 @@
       "interval" : 1,
       "level": "DEBUG",
       "formatter": "simple",
-      "filename": "log/app.log"
+      "filename": "log/app.log",
+      "encoding": "utf-8"
     },
     "testFileHandler": {
       "class": "logging.handlers.TimedRotatingFileHandler",
@@ -30,7 +31,8 @@
       "interval" : 1,
       "level": "DEBUG",
       "formatter": "simple",
-      "filename": "log/test.log"
+      "filename": "log/test.log",
+      "encoding": "utf-8"
     }
   },
 
