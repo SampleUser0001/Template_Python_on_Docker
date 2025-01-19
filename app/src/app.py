@@ -31,7 +31,7 @@ if __name__ == '__main__':
     logger.info('This is logger message!!')
     logger.debug('This is logger message!!')
 
-    # .envの取得
+    # environment.jsonの取得
     logger.info(f'ImportEnvKeyEnum.SAMPLE.value : {ImportEnvKeyEnum.SAMPLE.value}')
 
     sample_func()
