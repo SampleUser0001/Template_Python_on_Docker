@@ -3,7 +3,10 @@
   "disable_existing_loggers": false,
   "formatters": {
     "simple": {
-      "format": "%(asctime)s %(name)s:%(lineno)s %(funcName)s [%(levelname)s]: %(message)s"
+      "format": "%(asctime)s %(module)s:%(lineno)s [%(levelname)s]: %(message)s"
+    },
+    "contains_logger_name": {
+      "format": "%(asctime)s %(name)s %(module)s:%(lineno)s [%(levelname)s]: %(message)s"
     }
   },
 
@@ -19,7 +22,7 @@
       "when": "H",
       "backupCount": 5,
       "interval" : 1,
-      "level": "INFO",
+      "level": "DEBUG",
       "formatter": "simple",
       "filename": "log/app.log",
       "encoding": "utf-8"
@@ -51,6 +54,11 @@
       "level": "INFO",
       "handlers": ["consoleHandler", "fileHandler"],
       "propagate": false
+    },
+    "controller.SampleController.print_log_debug": {
+      "level": "DEBUG",
+      "handlers": ["consoleHandler", "fileHandler"],
+      "propagate": true
     },
     "test": {
       "level": "DEBUG",

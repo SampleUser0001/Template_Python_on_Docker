@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
+from logging import getLogger, NOTSET
 import json
 import os
+
+from functools import wraps
 
 class LogUtil:
 
@@ -18,6 +21,30 @@ class LogUtil:
             for name in cls.find_test_file():
                 log_conf['loggers'][name] = test_config
         return log_conf
+
+    @classmethod
+    def dynamic_logger(cls, logger_name):
+        def decorator(func):
+            @wraps(func)
+            def wrapper(*args, **kwargs):
+                # インスタンスが渡された場合にのみロガーを設定
+                # staticmethodの場合は、インスタンスが渡されないため、ロガーを設定しない
+                if args:
+                    logger = getLogger(logger_name)
+
+                    # ロガーの設定が見つかるまで、設定ファイルを遡る
+                    _logger_name = logger_name
+                    while logger.level == NOTSET:
+                        splited = _logger_name.split('.')
+                        _logger_name = '.'.join(splited[:-1])
+                        logger = getLogger(_logger_name)
+
+                    setattr(args[0], 'logger', logger)
+                    logger.propagate = False
+                return func(*args, **kwargs)
+            return wrapper
+        return decorator
+
     
     @classmethod
     def find_test_file(cls):
