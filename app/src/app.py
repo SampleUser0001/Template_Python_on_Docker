@@ -38,4 +38,5 @@ if __name__ == '__main__':
 
     Util.print()
     
-    SampleController().print_log()
+    SampleController().print_log_info_only()
+    SampleController().print_log_debug()

@@ -19,7 +19,7 @@
       "when": "H",
       "backupCount": 5,
       "interval" : 1,
-      "level": "DEBUG",
+      "level": "INFO",
       "formatter": "simple",
       "filename": "log/app.log",
       "encoding": "utf-8"
@@ -48,7 +48,7 @@
       "propagate": false
     },
     "controller": {
-      "level": "DEBUG",
+      "level": "INFO",
       "handlers": ["consoleHandler", "fileHandler"],
       "propagate": false
     },

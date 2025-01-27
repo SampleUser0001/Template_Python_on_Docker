@@ -18,6 +18,11 @@ class SampleController():
     def __init__(self) -> None:
         pass
     
-    def print_log(self) -> None:
+    def print_log_info_only(self) -> None:
         logger.info("print log")
         logger.debug("print log")
+
+    def print_log_debug(self) -> None:
+        logger.info("print log")
+        logger.debug("print log")
+        
