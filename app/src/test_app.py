@@ -3,7 +3,7 @@ from logging import getLogger, config, DEBUG, NOTSET
 import os
 
 # import sys
-from logutil import LogUtil, apply_logger
+from logutil import LogUtil
 
 from importenv import ImportEnvKeyEnum
 import unittest
@@ -15,6 +15,14 @@ log_conf = LogUtil.get_log_conf(os.path.join(PYTHON_APP_HOME, *LOG_CONFIG_FILE))
 config.dictConfig(log_conf)
 
 from importenv import ImportEnvKeyEnum
+
+def apply_logger(cls):
+    for attr_name, attr_value in cls.__dict__.items():
+        if callable(attr_value):  # メソッドかどうか確認
+            logger_name = f"{__name__}.{cls.__name__}.{attr_name}"
+            decorated = LogUtil.dynamic_logger(logger_name)(attr_value)
+            setattr(cls, attr_name, decorated)
+    return cls
 
 @apply_logger
 class TestUtil(unittest.TestCase):
