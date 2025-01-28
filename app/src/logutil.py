@@ -5,6 +5,14 @@ import os
 
 from functools import wraps
 
+def apply_logger(cls):
+    for attr_name, attr_value in cls.__dict__.items():
+        if callable(attr_value):  # メソッドかどうか確認
+            logger_name = f"{__name__}.{cls.__name__}.{attr_name}"
+            decorated = LogUtil.dynamic_logger(logger_name)(attr_value)
+            setattr(cls, attr_name, decorated)
+    return cls
+
 class LogUtil:
 
     @classmethod
@@ -57,3 +65,4 @@ class LogUtil:
                 if file.startswith('test_') and file.endswith('.py'):
                     test_files.append(file.replace('.py', ''))
         return test_files
+
