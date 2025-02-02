@@ -51,6 +51,16 @@
       "propagate": false
     },
     "controller": {
+      "level": "DEBUG",
+      "handlers": ["consoleHandler", "fileHandler"],
+      "propagate": false
+    },
+    "controller.SampleController.public_method": {
+      "level": "DEBUG",
+      "handlers": ["consoleHandler", "fileHandler"],
+      "propagate": false
+    },
+    "controller.SampleController._private_method": {
       "level": "INFO",
       "handlers": ["consoleHandler", "fileHandler"],
       "propagate": false

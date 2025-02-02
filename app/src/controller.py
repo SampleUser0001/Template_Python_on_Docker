@@ -34,4 +34,16 @@ class SampleController():
     def print_log_debug(self) -> None:
         self.logger.info("print log")
         self.logger.debug("print log")
+    
+    def public_method(self) -> None:
+        LOGGER = getLogger(__name__)
+        self._private_method()
+        self.logger.info("print log")
+        self.logger.debug("print log")
         
+        LOGGER.info("print log")
+        LOGGER.debug("print log")
+    
+    def _private_method(self) -> None:
+        self.logger.info("print log")
+        self.logger.debug("print log")

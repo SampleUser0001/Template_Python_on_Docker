@@ -38,18 +38,31 @@ class LogUtil:
                 # インスタンスが渡された場合にのみロガーを設定
                 # staticmethodの場合は、インスタンスが渡されないため、ロガーを設定しない
                 if args:
+                    
+                    instance = args[0]
+                    
+                    # 既存のself.loggerを待避
+                    original_logger = getattr(instance, 'logger', None)
+                    
                     logger = getLogger(logger_name)
 
                     # ロガーの設定が見つかるまで、設定ファイルを遡る
                     _logger_name = logger_name
-                    while logger.level == NOTSET:
+                    while logger.level == NOTSET and '.' in _logger_name:
                         splited = _logger_name.split('.')
                         _logger_name = '.'.join(splited[:-1])
                         logger = getLogger(_logger_name)
 
                     setattr(args[0], 'logger', logger)
                     logger.propagate = False
-                return func(*args, **kwargs)
+                    
+                    try:
+                        return func(*args, **kwargs)
+                    finally:
+                        # 元のself.loggerを復元
+                        setattr(instance, 'logger', original_logger)
+                else:
+                    return func(*args, **kwargs)
             return wrapper
         return decorator
 

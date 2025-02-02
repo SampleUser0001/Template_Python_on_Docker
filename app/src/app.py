@@ -50,4 +50,6 @@ if __name__ == '__main__':
     
     SampleController().print_log_info_only()
     SampleController().print_log_debug()
+    
+    SampleController().public_method()
     logger.info('Sample Finish!!')
