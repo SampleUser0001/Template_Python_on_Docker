@@ -47,6 +47,7 @@ if __name__ == '__main__':
     sample_func()
 
     Util.print()
+    Util.print2()
     
     SampleController().print_log_info_only()
     SampleController().print_log_debug()

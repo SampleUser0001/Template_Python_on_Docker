@@ -35,25 +35,20 @@ class LogUtil:
         def decorator(func):
             @wraps(func)
             def wrapper(*args, **kwargs):
-                # インスタンスが渡された場合にのみロガーを設定
-                # staticmethodの場合は、インスタンスが渡されないため、ロガーを設定しない
-                if args:
-                    
-                    instance = args[0]
-                    
-                    # 既存のself.loggerを待避
+                # インスタンスの有無を判断
+                instance = args[0] if args and isinstance(args[0], cls) else None
+                
+                if instance:
                     original_logger = getattr(instance, 'logger', None)
-                    
+
                     logger = getLogger(logger_name)
 
                     # ロガーの設定が見つかるまで、設定ファイルを遡る
-                    _logger_name = logger_name
-                    while logger.level == NOTSET and '.' in _logger_name:
-                        splited = _logger_name.split('.')
-                        _logger_name = '.'.join(splited[:-1])
-                        logger = getLogger(_logger_name)
+                    while logger.level == NOTSET and '.' in logger_name:
+                        logger_name = '.'.join(logger_name.split('.')[:-1])
+                        logger = getLogger(logger_name)
 
-                    setattr(args[0], 'logger', logger)
+                    setattr(instance, 'logger', logger)
                     logger.propagate = False
                     
                     try:
@@ -61,11 +56,11 @@ class LogUtil:
                     finally:
                         # 元のself.loggerを復元
                         setattr(instance, 'logger', original_logger)
-                else:
-                    return func(*args, **kwargs)
+                
+                # インスタンスがない場合（staticmethodなど）、直接関数を呼び出す
+                return func(*args, **kwargs)
             return wrapper
         return decorator
-
     
     @classmethod
     def find_test_file(cls):

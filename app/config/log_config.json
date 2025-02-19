@@ -50,6 +50,11 @@
       "handlers": ["consoleHandler", "fileHandler"],
       "propagate": false
     },
+    "util.sample.Util.print2": {
+      "level": "DEBUG",
+      "handlers": ["consoleHandler", "fileHandler"],
+      "propagate": true
+    },
     "controller": {
       "level": "DEBUG",
       "handlers": ["consoleHandler", "fileHandler"],
