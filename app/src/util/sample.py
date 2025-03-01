@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-from logging import getLogger, config, StreamHandler, DEBUG, NOTSET
+from logging import Logger, getLogger, config, StreamHandler, DEBUG, NOTSET
 import os
 
-from logutil import LogUtil
+from logutil import LogUtil, get_class_method_logger
+from typing import Type
 
-PYTHON_APP_HOME = os.getenv('PYTHON_APP_HOME')
+PYTHON_APP_HOME = os.getenv('PYTHON_APP_HOME', '..')
 LOG_CONFIG_FILE = ['config', 'log_config.json']
 
 logger = getLogger(__name__)
@@ -13,9 +14,8 @@ config.dictConfig(log_conf)
 logger.setLevel(DEBUG)
 logger.propagate = False
 
-def apply_logger(cls):
+def apply_logger(cls : type) -> type:
     logger_name = f"{__name__}.{cls.__name__}"
-    cls.logger = getLogger(logger_name)  # クラスレベルの logger を定義
 
     for attr_name, attr_value in cls.__dict__.items():
         if callable(attr_value):  # メソッドかどうか確認
@@ -28,13 +28,15 @@ def apply_logger(cls):
 @apply_logger
 class Util:
     @staticmethod
-    def print():
+    def print() -> str:
         logger.info('Hello Util.')
         logger.debug('Hello Util.')
         return 'This is Util'
     
     @classmethod
-    def print2(cls):
-        cls.logger.info('Hello Util.')
-        cls.logger.debug('Hello Util.')
+    def print2(cls: Type["Util"]) -> str:
+        # 自動的にクラスとメソッド名からロガーを取得
+        LOGGER = get_class_method_logger(cls)
+        LOGGER.info('Hello Util.')
+        LOGGER.debug('Hello Util.')
         return 'This is Util'

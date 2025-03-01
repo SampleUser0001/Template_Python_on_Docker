@@ -9,7 +9,7 @@ from importenv import ImportEnvKeyEnum
 from util.sample import Util
 from controller import SampleController
 
-PYTHON_APP_HOME = os.getenv('PYTHON_APP_HOME')
+PYTHON_APP_HOME = os.getenv('PYTHON_APP_HOME', '..')
 LOG_CONFIG_FILE = ['config', 'log_config.json']
 
 logger = getLogger(__name__)

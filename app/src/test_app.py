@@ -8,7 +8,7 @@ from logutil import LogUtil
 from importenv import ImportEnvKeyEnum
 import unittest
 
-PYTHON_APP_HOME = os.getenv('PYTHON_APP_HOME')
+PYTHON_APP_HOME = os.getenv('PYTHON_APP_HOME', '..')
 LOG_CONFIG_FILE = ['config', 'log_config.json']
 
 log_conf = LogUtil.get_log_conf(os.path.join(PYTHON_APP_HOME, *LOG_CONFIG_FILE))

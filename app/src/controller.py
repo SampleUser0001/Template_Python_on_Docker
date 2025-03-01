@@ -5,7 +5,7 @@ import os
 # import sys
 from logutil import LogUtil
 
-PYTHON_APP_HOME = os.getenv('PYTHON_APP_HOME')
+PYTHON_APP_HOME = os.getenv('PYTHON_APP_HOME', '..')
 LOG_CONFIG_FILE = ['config', 'log_config.json']
 
 logger = getLogger(__name__)
@@ -14,7 +14,7 @@ config.dictConfig(log_conf)
 logger.setLevel(DEBUG)
 logger.propagate = False
 
-def apply_logger(cls):
+def apply_logger(cls: type) -> type:
     for attr_name, attr_value in cls.__dict__.items():
         if callable(attr_value):  # メソッドかどうか確認
             logger_name = f"{__name__}.{cls.__name__}.{attr_name}"
