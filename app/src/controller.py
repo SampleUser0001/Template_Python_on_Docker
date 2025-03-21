@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from logging import getLogger, config, DEBUG, NOTSET
 import os
+from typing import Any, Dict, Callable, TypeVar, Union, Type
 
 # import sys
 from logutil import LogUtil
@@ -14,7 +15,9 @@ config.dictConfig(log_conf)
 logger.setLevel(DEBUG)
 logger.propagate = False
 
-def apply_logger(cls: type) -> type:
+T = TypeVar("T")
+
+def apply_logger(cls: Type[T]) -> Any:
     for attr_name, attr_value in cls.__dict__.items():
         if callable(attr_value):  # メソッドかどうか確認
             logger_name = f"{__name__}.{cls.__name__}.{attr_name}"
@@ -23,7 +26,7 @@ def apply_logger(cls: type) -> type:
     return cls
 
 @apply_logger
-class SampleController():
+class SampleController:
     def __init__(self) -> None:
         self.logger = getLogger(__name__)
     

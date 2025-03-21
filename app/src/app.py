@@ -2,6 +2,9 @@
 from logging import getLogger, config, DEBUG, NOTSET
 import os
 
+from typing import Any, Dict, Callable, TypeVar, Union, Type, TypeVar, Protocol, List
+from typing_extensions import ParamSpec
+
 # import sys
 from logutil import LogUtil
 from importenv import ImportEnvKeyEnum
@@ -18,13 +21,26 @@ config.dictConfig(log_conf)
 logger.setLevel(DEBUG)
 logger.propagate = False
 
-def apply_logger(cls):
-    for attr_name, attr_value in cls.__dict__.items():
-        if callable(attr_value):  # メソッドかどうか確認
-            logger_name = f"{__name__}.{cls.__name__}.{attr_name}"
-            decorated = LogUtil.dynamic_logger(logger_name)(attr_value)
-            setattr(cls, attr_name, decorated)
-    return cls
+# 型変数の定義
+T = TypeVar("T")
+P = ParamSpec("P")
+R = TypeVar("R")
+
+def apply_logger(target: Union[Type[T], Callable[..., Any]]) -> Any:
+    # クラスの場合
+    if isinstance(target, type):
+        for attr_name, attr_value in target.__dict__.items():
+            if callable(attr_value):  # メソッドかどうか確認
+                logger_name = f"{__name__}.{target.__name__}.{attr_name}"
+                decorated = LogUtil.dynamic_logger(logger_name)(attr_value)
+                setattr(target, attr_name, decorated)
+        return target
+    # 関数の場合
+    elif callable(target):
+        # 関数名からロガー名を取得
+        logger_name = f"{__name__}.{target.__name__}"
+        return LogUtil.dynamic_logger(logger_name)(target)
+    return target
 
 @apply_logger
 def sample_func():
