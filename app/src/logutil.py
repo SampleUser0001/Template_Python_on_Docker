@@ -16,7 +16,7 @@ R = TypeVar("R")
 class HasName(Protocol):
     __name__: str
 
-def apply_logger(cls: Type[T]) -> Type[T]:
+def apply_logger(cls: Type[T]) -> Any:
     for attr_name, attr_value in cls.__dict__.items():
         if callable(attr_value):  # メソッドかどうか確認
             logger_name = f"{__name__}.{cls.__name__}.{attr_name}"
