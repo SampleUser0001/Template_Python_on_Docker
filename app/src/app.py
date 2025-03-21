@@ -43,7 +43,7 @@ def apply_logger(target: Union[Type[T], Callable[..., Any]]) -> Any:
     return target
 
 @apply_logger
-def sample_func():
+def sample_func() -> None:
     logger.info('hoge')
     logger.debug('hoge')
 

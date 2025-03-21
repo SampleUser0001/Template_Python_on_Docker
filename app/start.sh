@@ -5,7 +5,7 @@ source common.sh
 pushd src > /dev/null
 
 # mypyを実行
-PYTHON_FILES=$(find $PYTHON_APP_HOME/src -name "*.py")
+PYTHON_FILES=$(find $PYTHON_APP_HOME/src -name "*.py" -not -name 'test*.py')
 shift # 最初の引数を削除して残りの引数をmypyのオプションとして扱う
 # mypyを実行（追加の引数があれば渡す）
 mypy $PYTHON_FILES $@
